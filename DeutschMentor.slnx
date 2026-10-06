@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DeutschMentor.Api/DeutschMentor.Api.csproj" />
+  <Project Path="DeutschMentor.Application/DeutschMentor.Application.csproj" />
+  <Project Path="DeutschMentor.Domain/DeutschMentor.Domain.csproj" />
+  <Project Path="DeutschMentor.Infrastructure/DeutschMentor.Infrastructure.csproj" />
+</Solution>

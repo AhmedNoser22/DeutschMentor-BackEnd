@@ -1,0 +1,11 @@
+﻿global using DeutschMentor.Domain.Entities;
+global using Microsoft.EntityFrameworkCore;
+global using DeutschMentor.Domain.Enums;
+global using DeutschMentor.Application.Authentication.Dtos;
+global using System.Net.Mail;
+global using DeutschMentor.Domain.Exceptions;
+global using DeutschMentor.Application.Common.Interfaces;
+global using System.Net;
+global using DeutschMentor.Application.Authentication.Interfaces;
+global using DeutschMentor.Application.Authentication;
+global using Microsoft.Extensions.DependencyInjection;
