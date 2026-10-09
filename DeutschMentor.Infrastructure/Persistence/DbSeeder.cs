@@ -12,6 +12,13 @@ public static class DbSeeder
             await db.Database.MigrateAsync();
         }
 
+        await ContentSeeder.EnsureLevelsAsync(db);
+
+        if (applyMigrations)
+        {
+            await ContentSeeder.SeedSampleContentAsync(db);
+        }
+
         var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
         var email = config["Seed:AdminEmail"]?.Trim().ToLowerInvariant();
         var password = config["Seed:AdminPassword"];

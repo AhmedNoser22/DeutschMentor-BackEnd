@@ -24,3 +24,5 @@ global using Microsoft.Extensions.Logging;
 global using DeutschMentor.Infrastructure.BackgroundJobs;
 global using DeutschMentor.Infrastructure.Email;
 global using DeutschMentor.Infrastructure.Identity;
+global using DeutschMentor.Application.Grammar.Dtos;
+global using System.Text.Json;

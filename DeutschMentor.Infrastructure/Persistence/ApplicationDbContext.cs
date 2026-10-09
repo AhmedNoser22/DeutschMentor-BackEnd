@@ -8,6 +8,16 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     public DbSet<PasswordResetCode> PasswordResetCodes => Set<PasswordResetCode>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
+    public DbSet<Level> Levels => Set<Level>();
+    public DbSet<Module> Modules => Set<Module>();
+    public DbSet<Unit> Units => Set<Unit>();
+    public DbSet<Lesson> Lessons => Set<Lesson>();
+    public DbSet<VocabularyItem> VocabularyItems => Set<VocabularyItem>();
+    public DbSet<GrammarTopic> GrammarTopics => Set<GrammarTopic>();
+    public DbSet<UserLessonProgress> LessonProgress => Set<UserLessonProgress>();
+    public DbSet<LevelPass> LevelPasses => Set<LevelPass>();
+    public DbSet<ReviewItem> ReviewItems => Set<ReviewItem>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);

@@ -6,6 +6,9 @@ public static class DependencyInjection
     {
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<ILearningService, LearningService>();
+        services.AddScoped<IVocabularyService, VocabularyService>();
+        services.AddScoped<IGrammarService, GrammarService>();
         return services;
     }
 }
