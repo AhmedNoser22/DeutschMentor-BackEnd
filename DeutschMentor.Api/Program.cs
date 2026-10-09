@@ -14,9 +14,9 @@ builder.Services.AddProblemDetails();
 var jwt = builder.Configuration.GetSection("Jwt").Get<JwtOptions>()
     ?? throw new InvalidOperationException("The Jwt configuration section is missing.");
 
-if (jwt.Key.Length < 32)
+if (jwt.Key.Length < 32 || string.IsNullOrWhiteSpace(jwt.Issuer) || string.IsNullOrWhiteSpace(jwt.Audience))
 {
-    throw new InvalidOperationException("Jwt:Key must be at least 32 characters long.");
+    throw new InvalidOperationException("Jwt:Key (32+ characters), Jwt:Issuer and Jwt:Audience must be set.");
 }
 
 builder.Services
