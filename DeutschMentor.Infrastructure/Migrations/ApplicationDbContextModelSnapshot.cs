@@ -22,6 +22,91 @@ namespace DeutschMentor.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.Exercise", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ExplanationAr")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ExplanationEn")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("LessonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PayloadJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prompt")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid?>("ReadingPassageId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReadingPassageId");
+
+                    b.HasIndex("LessonId", "ReadingPassageId", "Order")
+                        .IsUnique()
+                        .HasFilter("[ReadingPassageId] IS NOT NULL");
+
+                    b.ToTable("Exercises", (string)null);
+                });
+
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.ExerciseAttempt", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AnswerJson")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ExerciseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsCorrect")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.HasIndex("UserId", "ExerciseId");
+
+                    b.ToTable("ExerciseAttempts", (string)null);
+                });
+
             modelBuilder.Entity("DeutschMentor.Domain.Entities.GrammarTopic", b =>
                 {
                     b.Property<Guid>("Id")
@@ -308,6 +393,38 @@ namespace DeutschMentor.Infrastructure.Migrations
                     b.ToTable("PendingRegistrations", (string)null);
                 });
 
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.ReadingPassage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BodyJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LessonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId", "Order")
+                        .IsUnique();
+
+                    b.ToTable("ReadingPassages", (string)null);
+                });
+
             modelBuilder.Entity("DeutschMentor.Domain.Entities.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
@@ -564,6 +681,149 @@ namespace DeutschMentor.Infrastructure.Migrations
                     b.ToTable("VocabularyItems", (string)null);
                 });
 
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.WritingSubmission", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FeedbackJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Passed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ReviewStatus")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("ReviewedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ReviewedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ScorePercent")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeacherFeedback")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int?>("TeacherScorePercent")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("WordCount")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("WritingTaskId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReviewStatus");
+
+                    b.HasIndex("WritingTaskId");
+
+                    b.HasIndex("UserId", "WritingTaskId");
+
+                    b.ToTable("WritingSubmissions", (string)null);
+                });
+
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.WritingTask", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LessonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("MinWords")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PassPercent")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Prompt")
+                        .IsRequired()
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
+
+                    b.Property<string>("RulesJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SampleAnswer")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId", "Order")
+                        .IsUnique();
+
+                    b.ToTable("WritingTasks", (string)null);
+                });
+
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.Exercise", b =>
+                {
+                    b.HasOne("DeutschMentor.Domain.Entities.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DeutschMentor.Domain.Entities.ReadingPassage", "ReadingPassage")
+                        .WithMany()
+                        .HasForeignKey("ReadingPassageId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Lesson");
+
+                    b.Navigation("ReadingPassage");
+                });
+
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.ExerciseAttempt", b =>
+                {
+                    b.HasOne("DeutschMentor.Domain.Entities.Exercise", null)
+                        .WithMany()
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DeutschMentor.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DeutschMentor.Domain.Entities.GrammarTopic", b =>
                 {
                     b.HasOne("DeutschMentor.Domain.Entities.Lesson", "Lesson")
@@ -621,6 +881,17 @@ namespace DeutschMentor.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.ReadingPassage", b =>
+                {
+                    b.HasOne("DeutschMentor.Domain.Entities.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lesson");
+                });
+
             modelBuilder.Entity("DeutschMentor.Domain.Entities.RefreshToken", b =>
                 {
                     b.HasOne("DeutschMentor.Domain.Entities.User", "User")
@@ -674,6 +945,32 @@ namespace DeutschMentor.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("DeutschMentor.Domain.Entities.VocabularyItem", b =>
+                {
+                    b.HasOne("DeutschMentor.Domain.Entities.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lesson");
+                });
+
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.WritingSubmission", b =>
+                {
+                    b.HasOne("DeutschMentor.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DeutschMentor.Domain.Entities.WritingTask", null)
+                        .WithMany()
+                        .HasForeignKey("WritingTaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DeutschMentor.Domain.Entities.WritingTask", b =>
                 {
                     b.HasOne("DeutschMentor.Domain.Entities.Lesson", "Lesson")
                         .WithMany()

@@ -18,6 +18,12 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     public DbSet<LevelPass> LevelPasses => Set<LevelPass>();
     public DbSet<ReviewItem> ReviewItems => Set<ReviewItem>();
 
+    public DbSet<Exercise> Exercises => Set<Exercise>();
+    public DbSet<ExerciseAttempt> ExerciseAttempts => Set<ExerciseAttempt>();
+    public DbSet<ReadingPassage> ReadingPassages => Set<ReadingPassage>();
+    public DbSet<WritingTask> WritingTasks => Set<WritingTask>();
+    public DbSet<WritingSubmission> WritingSubmissions => Set<WritingSubmission>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);

@@ -17,6 +17,7 @@ public static class DbSeeder
         if (applyMigrations)
         {
             await ContentSeeder.SeedSampleContentAsync(db);
+            await PracticeSeeder.SeedAsync(db);
         }
 
         var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();

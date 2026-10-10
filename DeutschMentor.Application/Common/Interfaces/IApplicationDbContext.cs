@@ -17,5 +17,11 @@ public interface IApplicationDbContext
     DbSet<LevelPass> LevelPasses { get; }
     DbSet<ReviewItem> ReviewItems { get; }
 
+    DbSet<Exercise> Exercises { get; }
+    DbSet<ExerciseAttempt> ExerciseAttempts { get; }
+    DbSet<ReadingPassage> ReadingPassages { get; }
+    DbSet<WritingTask> WritingTasks { get; }
+    DbSet<WritingSubmission> WritingSubmissions { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
