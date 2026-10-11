@@ -28,5 +28,9 @@ public interface IApplicationDbContext
     DbSet<ExamAnswer> ExamAnswers { get; }
     DbSet<Certificate> Certificates { get; }
 
+    DbSet<ReviewLog> ReviewLogs { get; }
+    DbSet<DrillAttempt> DrillAttempts { get; }
+    DbSet<UserAchievement> UserAchievements { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

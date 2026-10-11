@@ -29,6 +29,10 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     public DbSet<ExamAnswer> ExamAnswers => Set<ExamAnswer>();
     public DbSet<Domain.Entities.Certificate> Certificates => Set<Domain.Entities.Certificate>();
 
+    public DbSet<ReviewLog> ReviewLogs => Set<ReviewLog>();
+    public DbSet<DrillAttempt> DrillAttempts => Set<DrillAttempt>();
+    public DbSet<UserAchievement> UserAchievements => Set<UserAchievement>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);

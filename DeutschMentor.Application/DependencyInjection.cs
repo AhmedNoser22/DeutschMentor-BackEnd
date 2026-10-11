@@ -14,6 +14,10 @@ public static class DependencyInjection
         services.AddScoped<IWritingService, WritingService>();
         services.AddScoped<IExamService, ExamService>();
         services.AddScoped<ICertificateService, CertificateService>();
+        services.AddScoped<IReviewService, ReviewService>();
+        services.AddScoped<IDrillService, DrillService>();
+        services.AddScoped<IAchievementService, AchievementService>();
+        services.AddScoped<IProgressService, ProgressService>();
         return services;
     }
 }
