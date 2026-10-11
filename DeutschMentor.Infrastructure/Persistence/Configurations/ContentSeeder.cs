@@ -30,12 +30,12 @@ public static class ContentSeeder
         var a2 = await db.Levels.FirstAsync(l => l.Code == CefrLevel.A2);
 
         var m1 = new Module { LevelId = a1.Id, Order = 1, Title = "Erste Schritte", TitleEn = "First steps" };
-        var u1 = new Unit { ModuleId = m1.Id, Order = 1, Title = "Begrüßen", TitleEn = "Greetings" };
+        var u1 = new Domain.Entities.Unit { ModuleId = m1.Id, Order = 1, Title = "Begrüßen", TitleEn = "Greetings" };
         var hello = NewLesson(u1, 1, "A1-1-01", "Hallo und Tschüss", "Hello and goodbye", "التحيات والوداع", 10);
         var intro = NewLesson(u1, 2, "A1-1-02", "Sich vorstellen", "Introducing yourself", "التعريف بالنفس", 12);
 
         var m2 = new Module { LevelId = a2.Id, Order = 1, Title = "Essen und Trinken", TitleEn = "Food and drink" };
-        var u2 = new Unit { ModuleId = m2.Id, Order = 1, Title = "Im Restaurant", TitleEn = "In the restaurant" };
+        var u2 = new Domain.Entities.Unit { ModuleId = m2.Id, Order = 1, Title = "Im Restaurant", TitleEn = "In the restaurant" };
         var menu = NewLesson(u2, 1, "A2-1-01", "Die Speisekarte", "The menu", "قائمة الطعام", 10);
         var drinks = NewLesson(u2, 2, "A2-1-02", "Getränke bestellen", "Ordering drinks", "طلب المشروبات", 12);
         var bill = NewLesson(u2, 3, "A2-1-03", "Die Rechnung", "The bill", "الفاتورة", 10);
@@ -103,7 +103,7 @@ public static class ContentSeeder
     private static Level NewLevel(CefrLevel code, int order, string title, string description) =>
         new() { Code = code, Order = order, Title = title, Description = description, PassMarkPercent = 70 };
 
-    private static Lesson NewLesson(Unit unit, int order, string code, string title, string titleEn, string titleAr, int minutes) =>
+    private static Lesson NewLesson(Domain.Entities.Unit unit, int order, string code, string title, string titleEn, string titleAr, int minutes) =>
         new()
         {
             UnitId = unit.Id,

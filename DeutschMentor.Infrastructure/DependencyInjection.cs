@@ -20,6 +20,7 @@ public static class DependencyInjection
         services.AddSingleton<ITokenService, JwtTokenService>();
         services.AddSingleton<IGoogleTokenValidator, GoogleTokenValidator>();
         services.AddSingleton<IEmailSender, SmtpEmailSender>();
+        services.AddSingleton<ICertificatePdfGenerator, CertificatePdfGenerator>();
 
         services.AddHostedService<AuthCleanupService>();
 

@@ -9,5 +9,6 @@ internal static class UserMapper
         user.Role,
         user.CurrentLevel,
         user.StartPreference,
-        user.PasswordHash is not null);
+        user.PasswordHash is not null,
+        user.StartPreference == StartPreference.PlacementTest && user.PlacementTakenAtUtc is null);
 }

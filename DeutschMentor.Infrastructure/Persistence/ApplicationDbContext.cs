@@ -10,7 +10,7 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
 
     public DbSet<Level> Levels => Set<Level>();
     public DbSet<Module> Modules => Set<Module>();
-    public DbSet<Unit> Units => Set<Unit>();
+    public DbSet<Domain.Entities.Unit> Units => Set<Domain.Entities.Unit>();
     public DbSet<Lesson> Lessons => Set<Lesson>();
     public DbSet<VocabularyItem> VocabularyItems => Set<VocabularyItem>();
     public DbSet<GrammarTopic> GrammarTopics => Set<GrammarTopic>();
@@ -23,6 +23,11 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     public DbSet<ReadingPassage> ReadingPassages => Set<ReadingPassage>();
     public DbSet<WritingTask> WritingTasks => Set<WritingTask>();
     public DbSet<WritingSubmission> WritingSubmissions => Set<WritingSubmission>();
+
+    public DbSet<ExamQuestion> ExamQuestions => Set<ExamQuestion>();
+    public DbSet<ExamAttempt> ExamAttempts => Set<ExamAttempt>();
+    public DbSet<ExamAnswer> ExamAnswers => Set<ExamAnswer>();
+    public DbSet<Domain.Entities.Certificate> Certificates => Set<Domain.Entities.Certificate>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

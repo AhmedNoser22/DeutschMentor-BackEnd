@@ -27,9 +27,9 @@ public sealed class ModuleConfiguration : IEntityTypeConfiguration<Module>
     }
 }
 
-public sealed class UnitConfiguration : IEntityTypeConfiguration<Unit>
+public sealed class UnitConfiguration : IEntityTypeConfiguration<Domain.Entities.Unit>
 {
-    public void Configure(EntityTypeBuilder<Unit> b)
+    public void Configure(EntityTypeBuilder<Domain.Entities.Unit> b)
     {
         b.ToTable("Units");
         b.HasKey(x => x.Id);

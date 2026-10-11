@@ -23,5 +23,10 @@ public interface IApplicationDbContext
     DbSet<WritingTask> WritingTasks { get; }
     DbSet<WritingSubmission> WritingSubmissions { get; }
 
+    DbSet<ExamQuestion> ExamQuestions { get; }
+    DbSet<ExamAttempt> ExamAttempts { get; }
+    DbSet<ExamAnswer> ExamAnswers { get; }
+    DbSet<Certificate> Certificates { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

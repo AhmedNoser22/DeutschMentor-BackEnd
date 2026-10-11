@@ -11,5 +11,6 @@ public class User : BaseEntity
     public StartPreference StartPreference { get; set; } = StartPreference.StartAtA1;
     public DateTime EmailConfirmedAtUtc { get; set; }
     public DateTime? LastLoginAtUtc { get; set; }
+    public DateTime? PlacementTakenAtUtc { get; set; }
     public bool IsActive { get; set; } = true;
 }

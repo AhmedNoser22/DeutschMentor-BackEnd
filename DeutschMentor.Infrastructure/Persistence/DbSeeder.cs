@@ -1,4 +1,11 @@
-﻿namespace DeutschMentor.Infrastructure.Persistence;
+﻿using DeutschMentor.Application.Authentication.Interfaces;
+using DeutschMentor.Domain.Entities;
+using DeutschMentor.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace DeutschMentor.Infrastructure.Persistence;
 
 public static class DbSeeder
 {
@@ -18,6 +25,7 @@ public static class DbSeeder
         {
             await ContentSeeder.SeedSampleContentAsync(db);
             await PracticeSeeder.SeedAsync(db);
+            await ExamSeeder.SeedAsync(db);
         }
 
         var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();

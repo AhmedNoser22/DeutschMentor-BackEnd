@@ -23,7 +23,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.12" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.12" />
+    <PackageReference Include="NEST" Version="7.17.5" />
+    <PackageReference Include="QuestPDF" Version="2026.9.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.23.0" />
+
+	  <Content Include="Assets\Fonts\*.ttf" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>

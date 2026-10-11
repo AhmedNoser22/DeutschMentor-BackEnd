@@ -29,7 +29,8 @@ public sealed record UserDto(
     UserRole Role,
     CefrLevel CurrentLevel,
     StartPreference StartPreference,
-    bool HasPassword);
+    bool HasPassword,
+    bool PlacementAvailable);
 
 public sealed record AuthResponse(
     string AccessToken,
