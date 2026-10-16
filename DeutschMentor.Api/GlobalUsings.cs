@@ -21,6 +21,8 @@ global using DeutschMentor.Application.Exams;
 global using DeutschMentor.Application.Exams.Dtos;
 global using DeutschMentor.Application.Grammar;
 global using DeutschMentor.Application.Grammar.Dtos;
+global using DeutschMentor.Application.Admin;
+global using DeutschMentor.Application.Content;
 global using DeutschMentor.Application.Common.Models;
 global using DeutschMentor.Application.Review;
 global using DeutschMentor.Application.Review.Dtos;

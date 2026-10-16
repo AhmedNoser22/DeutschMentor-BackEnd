@@ -15,4 +15,8 @@
     <ProjectReference Include="..\DeutschMentor.Domain\DeutschMentor.Domain.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="DeutschMentor.Tests" />
+	</ItemGroup>
+
 </Project>

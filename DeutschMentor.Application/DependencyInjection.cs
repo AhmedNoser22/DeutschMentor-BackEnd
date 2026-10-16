@@ -1,4 +1,7 @@
-﻿namespace DeutschMentor.Application;
+﻿using DeutschMentor.Application.Admin;
+using DeutschMentor.Application.Content;
+
+namespace DeutschMentor.Application;
 
 public static class DependencyInjection
 {
@@ -18,6 +21,8 @@ public static class DependencyInjection
         services.AddScoped<IDrillService, DrillService>();
         services.AddScoped<IAchievementService, AchievementService>();
         services.AddScoped<IProgressService, ProgressService>();
+        services.AddScoped<IAdminService, AdminService>();
+        services.AddScoped<IContentImportService, ContentImportService>();
         return services;
     }
 }

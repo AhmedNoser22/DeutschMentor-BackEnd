@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/DeutschMentor.Tests/DeutschMentor.Tests.csproj" />
+  </Folder>
   <Project Path="DeutschMentor.Api/DeutschMentor.Api.csproj" />
   <Project Path="DeutschMentor.Application/DeutschMentor.Application.csproj" />
   <Project Path="DeutschMentor.Domain/DeutschMentor.Domain.csproj" />
