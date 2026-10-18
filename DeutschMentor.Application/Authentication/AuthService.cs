@@ -1,4 +1,6 @@
-﻿namespace DeutschMentor.Application.Authentication;
+﻿using Microsoft.Extensions.Logging;
+
+namespace DeutschMentor.Application.Authentication;
 
 public sealed class AuthService(
     IApplicationDbContext db,
@@ -7,7 +9,8 @@ public sealed class AuthService(
     ITokenService tokens,
     IGoogleTokenValidator googleValidator,
     IEmailSender emailSender,
-    TimeProvider clock) : IAuthService
+    TimeProvider clock,
+    ILogger<AuthService> logger) : IAuthService
 {
     public async Task<PendingRegistrationResponse> RegisterAsync(RegisterRequest request, CancellationToken ct)
     {
@@ -325,8 +328,18 @@ public sealed class AuthService(
         }
     }
 
-    private Task SendAsync(string to, EmailContent content, CancellationToken ct) =>
-        emailSender.SendAsync(to, content.Subject, content.HtmlBody, ct);
+    private async Task SendAsync(string to, EmailContent content, CancellationToken ct)
+    {
+        try
+        {
+            await emailSender.SendAsync(to, content.Subject, content.HtmlBody, ct);
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            logger.LogError(ex, "Sending an email failed.");
+            throw new ConflictException("email_failed", "We could not send the email right now. Try again in a few minutes.");
+        }
+    }
 
     private async Task<AuthResponse> IssueAuthAsync(User user, DateTime nowUtc, CancellationToken ct)
     {

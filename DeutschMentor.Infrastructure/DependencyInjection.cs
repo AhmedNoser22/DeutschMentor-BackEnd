@@ -19,15 +19,7 @@ public static class DependencyInjection
         services.AddSingleton<ICodeService, CodeService>();
         services.AddSingleton<ITokenService, JwtTokenService>();
         services.AddSingleton<IGoogleTokenValidator, GoogleTokenValidator>();
-        services.Configure<BrevoOptions>(config.GetSection("Brevo"));
-        if (string.Equals(config["Email:Provider"], "Brevo", StringComparison.OrdinalIgnoreCase))
-        {
-            services.AddSingleton<IEmailSender, BrevoEmailSender>();
-        }
-        else
-        {
-            services.AddSingleton<IEmailSender, SmtpEmailSender>();
-        }
+        services.AddSingleton<IEmailSender, SmtpEmailSender>();
         services.AddSingleton<ICertificatePdfGenerator, CertificatePdfGenerator>();
 
         services.AddHostedService<AuthCleanupService>();
