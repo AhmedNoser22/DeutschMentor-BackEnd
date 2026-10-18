@@ -24,6 +24,7 @@ global using Google.Apis.Auth;
 global using MailKit.Net.Smtp;
 global using MailKit.Security;
 global using Microsoft.EntityFrameworkCore;
+global using System.Net.Http.Json;
 global using DeutschMentor.Application.Drills;
 global using DeutschMentor.Application.Progress;
 global using DeutschMentor.Application.Review;

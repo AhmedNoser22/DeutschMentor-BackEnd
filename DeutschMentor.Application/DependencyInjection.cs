@@ -1,7 +1,4 @@
-﻿using DeutschMentor.Application.Admin;
-using DeutschMentor.Application.Content;
-
-namespace DeutschMentor.Application;
+﻿namespace DeutschMentor.Application;
 
 public static class DependencyInjection
 {
@@ -23,6 +20,7 @@ public static class DependencyInjection
         services.AddScoped<IProgressService, ProgressService>();
         services.AddScoped<IAdminService, AdminService>();
         services.AddScoped<IContentImportService, ContentImportService>();
+        services.AddScoped<IAdminUserService, AdminUserService>();
         return services;
     }
 }

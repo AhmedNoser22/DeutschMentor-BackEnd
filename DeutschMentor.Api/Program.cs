@@ -1,3 +1,6 @@
+using DeutschMentor.Application.Common.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplication();
@@ -24,6 +27,23 @@ builder.Services
     .AddJwtBearer(o =>
     {
         o.MapInboundClaims = false;
+        o.Events = new JwtBearerEvents
+        {
+            OnTokenValidated = async context =>
+            {
+                var db = context.HttpContext.RequestServices.GetRequiredService<IApplicationDbContext>();
+                var active = Guid.TryParse(context.Principal?.FindFirst("sub")?.Value, out var userId)
+                    && await db.Users.AsNoTracking()
+                        .Where(u => u.Id == userId)
+                        .Select(u => u.IsActive)
+                        .FirstOrDefaultAsync(context.HttpContext.RequestAborted);
+
+                if (!active)
+                {
+                    context.Fail("The account is locked.");
+                }
+            }
+        };
         o.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
