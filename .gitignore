@@ -14,12 +14,32 @@
 # ASP.NET configuration / secrets
 **/appsettings.Development.json
 **/appsettings.Production.json
+**/appsettings.Staging.json
 **/appsettings.Local.json
+**/appsettings.*.local.json
 **/secrets.json
 
-# Certificates
+# Certificates / keys
 *.pfx
 *.p12
+*.key
+
+# Publish / deployment (MonsterASP)
+**/publish/
+**/Publish/
+**/PublishOutput/
+**/Properties/PublishProfiles/
+*.pubxml
+*.pubxml.user
+*.publishsettings
+*.zip
+**/web.config
+.ftpconfig
+ftpsync.settings
+sftp-config.json
+deploy.ps1
+deploy.bat
+.deploy/
 
 # Angular / Node
 **/node_modules/
@@ -37,6 +57,7 @@
 .vscode/
 
 # Logs
+logs/
 *.log
 
 # Coverage
